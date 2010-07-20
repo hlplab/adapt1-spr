@@ -1,4 +1,4 @@
-var shuffleSequence = seq("intro", "practice", sepWith("sep", shuffle(randomize("filler"), rshuffle("nc","comp"))), "endmsg");
+var shuffleSequence = seq("intro", "info", "practice", sepWith("sep", shuffle(randomize("filler"), rshuffle("nc","comp"))), "endmsg");
 
 var ds = "RegionedSentence"
 var qs = "Question"
@@ -19,6 +19,7 @@ var defaults = [
 var items = [
 	["sep", "Separator", {}],
 	["intro", "Message", {consentRequired: true, html: {include: "intro.html"}}],
+    ["info", "Form", {html: { include: "info.html" }, } ],
 	[["nc",1], ds, {s: "The talented photographer accepted the money could not be spent yet."}, 
 		qs, {q: "Could the money be spent? " , hasCorrect: "No", randomOrder: false}],
 	[["comp",1], ds, {s: "The talented photographer accepted that the money could not be spent yet."}, 
