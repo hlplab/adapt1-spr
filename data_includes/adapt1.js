@@ -1,7 +1,9 @@
-var shuffleSequence = seq("intro", "info", "practice", sepWith("sep", shuffle(randomize("filler"), rshuffle("nc","comp"))), "outtro");
+var shuffleSequence = seq("intro", "info", "practice", sepWith("sep", shuffle(randomize("filler"), rshuffle("nc","comp"))), "contact", "sr", "code");
 
-var ds = "RegionedSentence"
-var qs = "Question"
+var ds = "RegionedSentence";
+var qs = "Question";
+
+var manualSendResults = true;
 
 var defaults = [
     "Separator", {
@@ -17,6 +19,7 @@ var defaults = [
 ];
 
 var items = [
+    ["sr", "__SendResults__", { }],
     ["sep", "Separator", {}],
     ["intro", "Message", {consentRequired: true, html: {include: "intro.html"}}],
     ["info", "Form", {html: { include: "info.html" }, } ],
@@ -308,6 +311,7 @@ var items = [
         qs, {q: "Did the giraffes prefer to eat when it's cool? " , hasCorrect: "Yes", randomOrder: false}],
     ["filler", ds, {s: "The computer program was finished by the students in a couple of hours."}, 
         qs, {q: "Did the students complete the program? " , hasCorrect: "Yes", randomOrder: false}],
-    ["outtro", "Message", {consentRequired: false, html: {include: "contacts.html"}}] 
+    ["contact", "Message", {consentRequired: false, html: {include: "contacts.html"}}] 
+    ["code", "Message", {consentRequired: false, html: {include: "code.html"}}] 
 ];
 
