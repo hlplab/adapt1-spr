@@ -1,4 +1,4 @@
-var shuffleSequence = seq("intro", "info", "practice", sepWith("sep", shuffle(randomize("filler"), rshuffle("nc","comp"))), "endmsg");
+var shuffleSequence = seq("intro", "info", "practice", sepWith("sep", shuffle(randomize("filler"), rshuffle("nc","comp"))), "outtro");
 
 var ds = "RegionedSentence"
 var qs = "Question"
