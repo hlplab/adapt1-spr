@@ -1,13 +1,16 @@
 /* This software is licensed under a BSD license; see the LICENSE file for details. */
 
-/* Modified: 6/9/2010 by Andrew Wood
-    This file has been modified to achieve linger-like tagging capabilities (the functionality of the @
-    symbol has been changed).  See lines 29 and 240 for the edits.
+/* Based on DashedSentence.js
+ * This file has been modified to achieve linger-like tagging capabilities
+ * (the functionality of the @ symbol has been changed). 
+ *
+ * Modified: 6/9/2010 by Andrew Wood
+ * Modified: 7/21/2010 by Andrew Watts
 */
 
 function boolToInt(x) { if (x) return 1; else return 0; }
 
-$.widget("ui.DashedSentence", {
+$.widget("ui.RegionedSentence", {
     _init: function() {
         this.cssPrefix = this.options._cssPrefix;
         this.utils = this.options._utils;
@@ -16,7 +19,7 @@ $.widget("ui.DashedSentence", {
         if (typeof(this.options.s) == "string")
             this.words = this.options.s.split(/\s+/);
         else {
-            assert_is_arraylike(this.options.s, "Bad value for 's' option of DashedSentence.");
+            assert_is_arraylike(this.options.s, "Bad value for 's' option of RegionedSentence.");
             this.words = this.options.s;
         }
         this.mode = dget(this.options, "mode", "self-paced reading");
@@ -26,7 +29,7 @@ $.widget("ui.DashedSentence", {
         this.showBehind = dget(this.options, "showBehind", true);
         this.currentWord = 0;
 
-// NEW @ SYMBOL BEHAVIOR (Linger-like tags)
+        // NEW @ SYMBOL BEHAVIOR (Linger-like tags)
         this.stoppingPoint = this.words.length;
         this.tags = new Array(this.words.length -1);
 
@@ -38,16 +41,6 @@ $.widget("ui.DashedSentence", {
             else
                 this.tags[i] = "";
         }
-
-// OLD @ SYMBOL BEHAVIOR
-//       this.stoppingPoint = this.words.length;
-//       for (var i = 0; i < this.words.length; ++i) {
-//            if (stringStartsWith("@", this.words[i])) {
-//                this.words[i] = this.words[i].substring(1);
-//                this.stoppingPoint = i + 1;
-//                break;
-//            }
-//        }
 
         this.mainDiv = $("<div>");
         this.element.append(this.mainDiv);
@@ -66,7 +59,7 @@ $.widget("ui.DashedSentence", {
 
         // Precalculate MD5 of sentence.
         this.sentenceDescType = dget(this.options, "sentenceDescType", "literal");
-        assert(this.sentenceDescType == "md5" || this.sentenceDescType == "literal", "Bad value for 'sentenceDescType' option of DashedSentence.");
+        assert(this.sentenceDescType == "md5" || this.sentenceDescType == "literal", "Bad value for 'sentenceDescType' option of RegionedSentence.");
         if (this.sentenceDescType == "md5") {
             var canonicalSentence = this.words.join(' ');
             this.sentenceDesc = hex_md5(canonicalSentence);
@@ -247,7 +240,7 @@ $.widget("ui.DashedSentence", {
     }
 });
 
-ibex_controller_set_properties("DashedSentence", {
+ibex_controller_set_properties("RegionedSentence", {
     obligatory: ["s"],
     htmlDescription: function (opts) {
         return $(document.createElement("div")).text(opts.s);
