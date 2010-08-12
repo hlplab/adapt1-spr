@@ -311,7 +311,7 @@ var items = [
         qs, {q: "Did the giraffes prefer to eat when it's cool? " , hasCorrect: "Yes", randomOrder: false}],
     ["filler", ds, {s: "The computer program was finished by the students in a couple of hours."}, 
         qs, {q: "Did the students complete the program? " , hasCorrect: "Yes", randomOrder: false}],
-    ["contact", "Message", {consentRequired: false, html: {include: "contacts.html"}}] 
+    ["contact", "Message", {consentRequired: false, html: {include: "contacts.html"}}],
     ["code", "Message", {consentRequired: false, html: {include: "code.html"}}] 
 ];
 
